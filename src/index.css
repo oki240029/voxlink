@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  background-color: #03030a;
+  color: #e5e7ff;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(167, 139, 250, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050514;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f46e5, #06b6d4);
+  border-radius: 999px;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8 lg:px-12;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-neon-cyan via-neon-ice to-neon-violet bg-clip-text text-transparent;
+  }
+
+  .text-gradient-violet {
+    @apply bg-gradient-to-br from-neon-violet via-neon-pink to-neon-ice bg-clip-text text-transparent;
+  }
+
+  .glass {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.015) 100%
+    );
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl;
+  }
+
+  .neon-border {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .neon-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(125, 211, 252, 0.6),
+      rgba(167, 139, 250, 0.6),
+      rgba(240, 171, 252, 0.4),
+      rgba(94, 234, 212, 0.6)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300;
+    background: linear-gradient(120deg, #7c3aed 0%, #06b6d4 100%);
+    box-shadow:
+      0 10px 40px -10px rgba(124, 58, 237, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 20px 50px -10px rgba(124, 58, 237, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition-all duration-300 hover:border-white/30 hover:bg-white/5 hover:text-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium tracking-wider text-white/70;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-bold leading-tight md:text-5xl;
+  }
+
+  .section-eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-neon-cyan/80;
+  }
+
+  .legal-prose {
+    @apply text-[15px] leading-relaxed text-white/75;
+  }
+  .legal-prose section + section {
+    @apply mt-12;
+  }
+  .legal-prose h2 {
+    @apply font-display text-xl font-bold leading-snug text-white md:text-2xl;
+  }
+  .legal-prose h2 .num {
+    @apply mr-3 font-mono text-neon-cyan/80;
+  }
+  .legal-prose h3 {
+    @apply mt-6 mb-2 font-display text-base font-semibold text-white;
+  }
+  .legal-prose p {
+    @apply mt-3;
+  }
+  .legal-prose ul {
+    @apply mt-3 space-y-1.5 pl-5;
+  }
+  .legal-prose ul li {
+    @apply relative list-none;
+  }
+  .legal-prose ul li::before {
+    content: "";
+    @apply absolute -left-4 top-2.5 h-1.5 w-1.5 rounded-full bg-gradient-to-br from-neon-cyan to-neon-violet;
+  }
+  .legal-prose ol {
+    @apply mt-3 space-y-1.5 list-decimal pl-6 marker:text-neon-cyan/80;
+  }
+  .legal-prose table {
+    @apply mt-4 w-full overflow-hidden rounded-xl border border-white/10 text-sm;
+  }
+  .legal-prose th,
+  .legal-prose td {
+    @apply border-b border-white/10 px-4 py-3 align-top text-left;
+  }
+  .legal-prose th {
+    @apply w-[35%] bg-white/[0.04] font-mono text-[11px] uppercase tracking-[0.15em] text-white/60;
+  }
+  .legal-prose td {
+    @apply text-white/80;
+  }
+  .legal-prose tr:last-child th,
+  .legal-prose tr:last-child td {
+    @apply border-b-0;
+  }
+  .legal-prose strong {
+    @apply text-white;
+  }
+  .legal-prose a {
+    @apply text-neon-cyan underline-offset-4 hover:underline;
+  }
+}
+
+@layer utilities {
+  .mask-radial {
+    mask-image: radial-gradient(ellipse at center, #000 50%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 80%);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 30px rgba(167, 139, 250, 0.4);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+}
+
+@keyframes auroraShift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(-3%, 2%, 0) rotate(8deg) scale(1.08);
+  }
+}
+
+.aurora-a {
+  animation: auroraShift 18s ease-in-out infinite;
+}
+.aurora-b {
+  animation: auroraShift 24s ease-in-out infinite reverse;
+}
+
+*:focus-visible {
+  outline: 2px solid rgba(125, 211, 252, 0.8);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
